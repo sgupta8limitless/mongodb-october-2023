@@ -1,0 +1,38 @@
+ to see the databases present in my system
+--- show dbs
+
+
+to create a new db / switch to different db
+--- use database-name
+
+to create a new collection 
+--- db.createCollection('name')
+
+to view the collection in a database
+---show collections
+
+to create a new document/record/data
+--- db.colletionName.insertOne({})
+
+to create multiple docs/records at once
+---db.collectionName.insertMany([{},{},{}])
+
+to view all data in a collection
+---db.collectionName.find()
+
+to view data based on filter/condition
+---db.collectionName.find({prop:value})
+
+to update a document/record
+---db.collectionName.updateOne({name:'ANT Mouse'},{$set:{category:'Electronics'}})
+
+---db.collectionName.updateMany({category:'Electronics'},{$set:{price:10000}})
+
+
+to delete a record/doc
+---db.collectionname.deleteOne({property:value})
+---deleteMany
+
+to completely clear your collection
+---db.collectionname.deleteMany({})
+
