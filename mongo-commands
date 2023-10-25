@@ -36,3 +36,88 @@ to delete a record/doc
 to completely clear your collection
 ---db.collectionname.deleteMany({})
 
+
+Reading Datausing different query operators
+
+RELATIONAL or comparison ops
+
+$eq = equals
+
+--db.coll.find({brand:{$eq:'Apple'}})
+
+$gt = greater than
+
+--db.coll.find({price:{$gt:1000},brand:'Apple'})
+
+$gte - greater than or equal to
+----db.coll.find({price:{$gte:1000}})
+
+$lt - less than
+--- db.coll.find({rating:{$lt:4}})
+
+$lte - less than or equal to
+
+--- db.coll.find({rating:{$lte:4}})
+
+$in - used to specify multiple values for a single field
+
+---db.products.find({brand:{$in:['Apple','LED Lights','Golden']}})
+
+$nin
+
+---db.products.find({brand:{$nin:['Apple','LED Lights','Golden']}})
+
+
+
+
+
+
+LOGICAL operators
+
+$and - where all condition should be true
+---db.products.find({$and:[{price:{$gte:500}},{price:{$lte:1000}}]})
+
+--db.products.find({price:{$gte:500,$lte:1000}})
+
+$or - even if one is true the whole condition will be considered true
+
+---db.products.find({$or:[{price:{$lte:50}},{brand:'Apple'}]})
+
+
+PROJECTION - selecting specific properties to view
+
+---db.products.find({},{title:1,description:1})
+
+forcing for not including id
+--- db.products.find({},{_id:false,title:true,description:true})
+
+
+
+LIMIT
+
+---db.products.find().limit(10)
+
+LIMIT AND SKIP
+---db.products.find().limit(n).skip(n)
+
+
+
+SORT
+
+---db.products.find().sort({price:-1})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
