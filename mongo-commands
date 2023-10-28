@@ -107,6 +107,78 @@ SORT
 ---db.products.find().sort({price:-1})
 
 
+// Validation 
+
+
+db.createCollection("students",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["name","jod","age"],
+            properties:{
+                name:{
+                    bsonType:"string",
+                    description:"Name should be a string",
+                    maxLength:30
+                },
+                age:{
+                    bsonType:"int",
+                    description:"Age Should be a number",
+                    minimum:12,
+                    maximum:50
+                },
+                jod:{
+                    bsonType:"date",
+                    description:"jod should be date"
+                },
+                course:{
+                    bsonType:"array",
+                    items:{
+                        bsonType:"string"
+                    },
+                    description:"Course should be a string"
+                }
+            }
+        }
+    
+    }
+    
+})
+
+
+db.students.insertOne({name:"Aqib",jod:new Date("2018-8-24"),age:23,course:["Java","Cpp"]})
+
+
+
+
+// aggregation 
+
+// find document based on category 
+// group it
+//sort it
+//limit it
+
+// grouping 
+
+find({}).sort({}).limit(2)
+
+db.products.aggregate([
+    {
+        $match:{$and:[{},{},{}]}
+    },
+    {
+        $group:{_id:"$category",avgPrice:{$avg:'$price'}}
+    },
+    {
+        $sort:{'avgPrice':-1}
+    },
+    {
+        $limit:2
+    }
+])
+
+
+// result 
 
 
 
